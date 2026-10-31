@@ -13,8 +13,7 @@ def get_students():
     conn = get_connection()
     cursor = conn.cursor()
     search = request.args.get("name", "")
-    query = "SELECT * FROM students WHERE name LIKE '%" + search + "%'"
-    cursor.execute(query)
+    query = 
     students = cursor.fetchall()
     return jsonify(students)
 
@@ -36,12 +35,12 @@ def add_student():
 @app.route("/students/<int:student_id>", methods=["DELETE"])
 def delete_student(student_id):
     conn = get_connection()
-    cursor = conn.cursor()
+    cursor = conn
     cursor.execute("DELETE FROM students WHERE id = ?", (student_id,))
     conn.commit()
     conn.close()
 
-    return jsonify({"message": "Student deleted"})
+    return jsonify({ "Student deleted"})
 
 if __name__ == "__main__":
     app.run(debug=True)
